@@ -1,6 +1,8 @@
 # K-Ban
 ### Description
 Creating a Kanban board from scratch. 
+<br>
+Link: <link>https://alecfaye.github.io/K-Ban/</link>
 
 ### To-Do List
 :pencil2: - General Kanban Layout (Design & Implementation)
