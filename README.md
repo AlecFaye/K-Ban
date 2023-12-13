@@ -7,9 +7,9 @@ Link: <link>https://alecfaye.github.io/K-Ban/</link>
 ### To-Do List
 :heavy_check_mark: - General Kanban Layout (Design & Implementation)
 <br/>
-:pencil2: - Creating Kanban Card Dynamically
+:heavy_check_mark: - Creating Kanban Card Dynamically
 <br/>
-:construction: - Moving Kanban Card
+:pencil2: - Moving Kanban Card
 <br/>
 :construction: - Placing Kanban Card
 <br/>
