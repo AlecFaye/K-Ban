@@ -5,9 +5,9 @@ Creating a Kanban board from scratch.
 Link: <link>https://alecfaye.github.io/K-Ban/</link>
 
 ### To-Do List
-:pencil2: - General Kanban Layout (Design & Implementation)
+:heavy_check_mark: - General Kanban Layout (Design & Implementation)
 <br/>
-:construction: - Creating Kanban Card Dynamically
+:pencil2: - Creating Kanban Card Dynamically
 <br/>
 :construction: - Moving Kanban Card
 <br/>
