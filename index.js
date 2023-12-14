@@ -1,5 +1,3 @@
-var cardIdCounter = 1;
-
 const backlogTaskHolderId = "backlog-task-holder";
 const doingTaskHolderId = "doing-task-holder";
 const reviewTaskHolderId = "review-task-holder";
@@ -9,6 +7,8 @@ const backlogId = 1;
 const doingId = 2;
 const reviewId = 3;
 const doneId = 4;
+
+var cardIdCounter = 1;
 
 function addCard(columnId)
 {
@@ -59,31 +59,16 @@ function addCard(columnId)
     leftButton.id = cardIdCounter * 10 + 1;
     rightButton.id = cardIdCounter * 10 + 2;
 
-    var kanbanColumnId;
-    switch (columnId)
-    {
-        case backlogTaskHolderId:
-            kanbanColumnId = backlogId;
-            break;
-        case doingTaskHolderId:
-            kanbanColumnId = doingId;
-            break;
-        case reviewTaskHolderId:
-            kanbanColumnId = reviewId;
-            break;
-        case doneTaskHolderId:
-            kanbanColumnId = doneId;
-            break;
-    }
+    var kanbanColumnIndex = getKanbanColumnIndexByStringId(columnId)
 
     leftButton.onclick = function()
     {
-        moveCardLeft(cardDiv.id.toString(), leftButton.id.toString(), rightButton.id.toString(), kanbanColumnId);
+        moveCardLeft(cardDiv.id.toString(), leftButton.id.toString(), rightButton.id.toString(), kanbanColumnIndex);
     }
 
     rightButton.onclick = function()
     {
-        moveCardRight(cardDiv.id.toString(), rightButton.id.toString(), rightButton.id.toString(), kanbanColumnId);
+        moveCardRight(cardDiv.id.toString(), leftButton.id.toString(), rightButton.id.toString(), kanbanColumnIndex);
     }
 
     cardIdCounter++;
@@ -91,66 +76,89 @@ function addCard(columnId)
     document.getElementById(columnId).appendChild(cardDiv);
 }
 
-function moveCardLeft(cardDivId, leftButtonId, rightButtonId, kanbanColumnId)
+function moveCardLeft(cardDivId, leftButtonId, rightButtonId, kanbanColumnIndex)
 {
-    kanbanColumnId--;
-    if (kanbanColumnId < 1)
+    var newIndex = kanbanColumnIndex - 1;
+    if (newIndex < 1)
     {
-        kanbanColumnId = 1;
+        newIndex = 1;
     }
 
-    updateKanbanColumn(cardDivId, kanbanColumnId);
-    updateCardButtons(cardDivId, leftButtonId, rightButtonId, kanbanColumnId);
+    updateKanbanColumn(cardDivId, newIndex);
+    updateCardButtons(cardDivId, leftButtonId, rightButtonId, newIndex);
 }
 
-function moveCardRight(cardDivId, leftButtonId, rightButtonId, kanbanColumnId)
+function moveCardRight(cardDivId, leftButtonId, rightButtonId, kanbanColumnIndex)
 {
-    kanbanColumnId++;
-    if (kanbanColumnId > 4)
+    var newIndex = kanbanColumnIndex + 1;
+    if (newIndex > 4)
     {
-        kanbanColumnId = 4;
+        newIndex = 4;
     }
 
-    updateKanbanColumn(cardDivId, kanbanColumnId);
-    updateCardButtons(cardDivId, leftButtonId, rightButtonId, kanbanColumnId);
+    updateKanbanColumn(cardDivId, newIndex);
+    updateCardButtons(cardDivId, leftButtonId, rightButtonId, newIndex);
 }
 
-function updateCardButtons(cardDivId, leftButtonId, rightButtonId, kanbanColumnId)
+function removeCard(cardDivId)
+{
+    const cardToRemove = document.getElementById(cardDivId);
+    cardToRemove.remove();
+}
+
+function updateCardButtons(cardDivId, leftButtonId, rightButtonId, kanbanColumnIndex)
 {
     var leftButton = document.getElementById(leftButtonId);
     var rightButton = document.getElementById(rightButtonId);
 
     leftButton.onclick = function()
     {
-        moveCardLeft(cardDivId, leftButtonId, rightButtonId, kanbanColumnId);
+        moveCardLeft(cardDivId, leftButtonId, rightButtonId, kanbanColumnIndex);
     }
 
     rightButton.onclick = function()
     {
-        moveCardRight(cardDivId, leftButtonId, rightButtonId, kanbanColumnId);
+        moveCardRight(cardDivId, leftButtonId, rightButtonId, kanbanColumnIndex);
     }
 }
 
-function updateKanbanColumn(cardDivId, kanbanColumnId)
+function updateKanbanColumn(cardDivId, kanbanColumnIndex)
 {
     var cardDiv = document.getElementById(cardDivId);
 
-    var newKanbanColumnId;
+    var kanbanColumnStringId = getKanbanColumnStringIdByIndex(kanbanColumnIndex);
+
+    document.getElementById(kanbanColumnStringId).appendChild(cardDiv);
+}
+
+function getKanbanColumnIndexByStringId(kanbanColumnId)
+{
     switch (kanbanColumnId)
     {
-        case backlogId:
-            newKanbanColumnId = backlogTaskHolderId;
-            break;
-        case doingId:
-            newKanbanColumnId = doingTaskHolderId;
-            break;
-        case reviewId:
-            newKanbanColumnId = reviewTaskHolderId;
-            break;
-        case doneId:
-            newKanbanColumnId = doneTaskHolderId;
-            break;
+        case backlogTaskHolderId:
+            return backlogId;
+        case doingTaskHolderId:
+            return doingId;
+        case reviewTaskHolderId:
+            return reviewId;
+        case doneTaskHolderId:
+            return doneId;
     }
+    return null;
+}
 
-    document.getElementById(newKanbanColumnId).appendChild(cardDiv);
+function getKanbanColumnStringIdByIndex(kanbanColumnIndex)
+{
+    switch (kanbanColumnIndex)
+    {
+        case backlogId:
+            return backlogTaskHolderId;
+        case doingId:
+            return doingTaskHolderId;
+        case reviewId:
+            return reviewTaskHolderId;
+        case doneId:
+            return doneTaskHolderId;
+    }
+    return null;
 }
