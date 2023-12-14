@@ -8,58 +8,91 @@ const doingId = 2;
 const reviewId = 3;
 const doneId = 4;
 
-var cardIdCounter = 1;
+let cardIdCounter = 1;
+
+const cards = [];
+
+class Card
+{
+    constructor(id, title, text)
+    {
+        this.id = id,
+        this.title = title,
+        this.text = text
+    }
+}
 
 function addCard(columnId)
 {
-    var cardDiv = document.createElement("div");
-    var cardHeaderDiv = document.createElement("div");
-    var rowDiv = document.createElement("div");
-    var cardHeaderTextDiv = document.createElement("div");
-    var cardHeaderButtonGroupDiv = document.createElement("div");
-    var leftButton = document.createElement("button");
-    var rightButton = document.createElement("button");
-    var leftIcon = document.createElement("i");
-    var rightIcon = document.createElement("i");
-    var cardBodyDiv = document.createElement("div");
-    var cardText = document.createElement("p");
+    const newCard = new Card(cardIdCounter, "Task Title", "Some quick example text to build on the card title and make up the bulk of the card's content.");
+    cards.push(newCard);
 
-    cardDiv.appendChild(cardHeaderDiv);
+    let cardDiv = document.createElement("div");
+    let cardBodyDiv = document.createElement("div");
+
+    let titleRow = document.createElement("div");
+    let titleColumn = document.createElement("div");
+    let titleP = document.createElement("p");
+
+    let buttonRow = document.createElement("div");
+    let buttonColumn = document.createElement("div");
+    let buttonGroup = document.createElement("div");
+    let leftButton = document.createElement("button");
+    let rightButton = document.createElement("button");
+    let editButton = document.createElement("button");
+
+    let leftButtonIcon = document.createElement("i");
+    let rightButtonIcon = document.createElement("i");
+    let editButtonIcon = document.createElement("i");
+
     cardDiv.appendChild(cardBodyDiv);
-    cardHeaderDiv.appendChild(rowDiv);
-    rowDiv.appendChild(cardHeaderTextDiv);
-    rowDiv.appendChild(cardHeaderButtonGroupDiv);
-    cardHeaderButtonGroupDiv.appendChild(leftButton);
-    leftButton.appendChild(leftIcon);
-    cardHeaderButtonGroupDiv.appendChild(rightButton);
-    rightButton.appendChild(rightIcon);
-    cardBodyDiv.appendChild(cardText);
-    
-    cardDiv.className = "card mb-2";
-    cardHeaderDiv.className = "card-header";
-    rowDiv.className = "row";
-    cardHeaderTextDiv.className = "col-lg-9 col-sm-12 text-center";
-    cardHeaderButtonGroupDiv.className = "col-lg-3 col-sm-12 btn-group justify-content-center";
-    leftButton.className = "btn btn-sm btn-primary mx-1";
-    rightButton.className = "btn btn-sm btn-primary mx-1";
-    leftIcon.className = "fa-solid fa-arrow-left";
-    rightIcon.className = "fa-solid fa-arrow-right";
+    cardBodyDiv.appendChild(titleRow);
+    titleRow.appendChild(titleColumn);
+    titleColumn.appendChild(titleP);
+
+    cardBodyDiv.appendChild(buttonRow);
+    buttonRow.appendChild(buttonColumn);
+    buttonColumn.appendChild(buttonGroup);
+    buttonGroup.appendChild(leftButton);
+    buttonGroup.appendChild(rightButton);
+    buttonGroup.appendChild(editButton);
+
+    leftButton.appendChild(leftButtonIcon);
+    rightButton.appendChild(rightButtonIcon);
+    editButton.appendChild(editButtonIcon);
+
+    cardDiv.className = "card my-2";
     cardBodyDiv.className = "card-body";
-    cardText.className = "card-text";
-    
-    cardHeaderButtonGroupDiv.role = "group";
+
+    titleRow.className = "row text-center";
+    titleColumn.className = "col-sm-12";
+    titleP.className = "h5";
+
+    buttonRow.className = "row text-center";
+    buttonColumn.className = "col-sm-12";
+    buttonGroup.className = "btn-group";
+
+    leftButton.className = "btn btn-sm btn-primary";
+    rightButton.className = "btn btn-sm btn-primary";
+    editButton.className = "btn btn-sm btn-primary";
+
+    leftButtonIcon.className = "fa-solid fa-arrow-left";
+    rightButtonIcon.className = "fa-solid fa-arrow-right";
+    editButtonIcon.className = "fa-solid fa-pencil";
+
+    buttonGroup.role = "group";
 
     leftButton.type = "button";
     rightButton.type = "button";
+    editButton.type = "button";
 
-    cardHeaderTextDiv.innerHTML = "Task Title";
-    cardText.innerHTML = "Some quick example text to build on the card title and make up the bulk of the card's content.";
-
+    titleP.innerHTML = "Task Title";
+    
     cardDiv.id = cardIdCounter;
     leftButton.id = cardIdCounter * 10 + 1;
     rightButton.id = cardIdCounter * 10 + 2;
 
-    var kanbanColumnIndex = getKanbanColumnIndexByStringId(columnId)
+    let kanbanColumnIndex = getKanbanColumnIndexByStringId(columnId)
 
     leftButton.onclick = function()
     {
