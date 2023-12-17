@@ -15,6 +15,8 @@ Link: <link>https://alecfaye.github.io/K-Ban/</link>
 <br/>
 :heavy_check_mark: - Dynamically Edit Kanban Card
 <br/>
+:construction: - Deleting Kanban Card
+<br/>
 :construction: - Placing Kanban Card
 <br/>
 
