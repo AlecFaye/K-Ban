@@ -13,82 +13,112 @@
         <div class="container">
             <h1 class="py-3" style="text-align: center;">My K-Ban Board</h1>
             <div class="row">
+
                 <!-- Backlog Container -->
-                <div id="backlog-task-holder" class="col border border-danger rounded-top mx-2 pb-2">
-                    
-                    <div class="row align-items-center py-2">
-                        <div class="col-lg-8 col-sm-12">
-                            <h2 style="text-align: center;">Backlog</h2>
+                <div class="card col mx-2">
+                    <div class="card-header row align-items-center">
+                        <div class="col-lg-10 col-sm-12 text-lg-start text-sm-center">
+                            <h3>Backlog</h3>
                         </div>
-                        <div class="col-lg-4 col-sm-12 text-center">
+                        <div class="col-lg-2 col-sm-12 text-center">
                             <button type="button" class="btn btn-sm btn-primary" onclick="addCard('backlog-task-holder')"><i class="fa-solid fa-plus"></i></button>
                         </div>
                     </div>
 
-                    <!--
-                        <div class="card mb-2">
-                            <div class="card-header">
-                                <div class="row">
-                                    <div class="col-lg-9 col-sm-12 text-center">
-                                        Task Title
-                                    </div>
-                                    <div class="col-lg-3 col-sm-12 btn-group justify-content-center">
-                                        <button type="button" class="btn btn-sm btn-primary mx-1"><i class="fa-solid fa-arrow-left"></i></button>
-                                        <button type="button" class="btn btn-sm btn-primary mx-1"><i class="fa-solid fa-arrow-right"></i></button>
-                                    </div>
-                                </div>
-                            </div>
+                    <div id="backlog-task-holder" class="card-body">
+                        <!-- <div class="card my-2">
                             <div class="card-body">
-                                <div class="card-text">
-                                    <p>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <div class="row text-center">
+                                    <div class="col-sm-12">
+                                        <p class="h5">Task Title</p>
+                                    </div>
+                                </div>
+                                <div class="row text-center">
+                                    <div class="col-sm-12">
+                                        <div class="btn-group" role="group">
+                                            <button type="button" class="btn btn-sm btn-primary"><i class="fa-solid fa-arrow-left"></i></button>
+                                            <button type="button" class="btn btn-sm btn-primary"><i class="fa-solid fa-arrow-right"></i></button>
+                                            <button type="button" class="btn btn-sm btn-primary"><i class="fa-solid fa-pencil"></i></button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    -->
-
+                        </div> -->
+                    </div>
                 </div>
 
                 <!-- Doing Container -->
-                <div id="doing-task-holder" class="col border border-danger rounded-top mx-2 pb-2">
-                    
-                    <div class="row align-items-center py-2">
-                        <div class="col-lg-8 col-sm-12">
-                            <h2 style="text-align: center;">Doing</h2>
+                <div class="card col mx-2">
+                    <div class="card-header row align-items-center">
+                        <div class="col-lg-10 col-sm-12 text-lg-start text-sm-center">
+                            <h3>Doing</h3>
                         </div>
-                        <div class="col-lg-4 col-sm-12 text-center">
+                        <div class="col-lg-2 col-sm-12 text-center">
                             <button type="button" class="btn btn-sm btn-primary" onclick="addCard('doing-task-holder')"><i class="fa-solid fa-plus"></i></button>
                         </div>
                     </div>
 
+                    <div id="doing-task-holder" class="card-body">
+                        
+                    </div>
                 </div>
 
                 <!-- Review Container -->
-                <div id="review-task-holder" class="col border border-danger rounded-top mx-2 pb-2">
-                    
-                    <div class="row align-items-center py-2">
-                        <div class="col-lg-8 col-sm-12">
-                            <h2 style="text-align: center;">Review</h2>
+                <div class="card col mx-2">
+                    <div class="card-header row align-items-center">
+                        <div class="col-lg-10 col-sm-12 text-lg-start text-sm-center">
+                            <h3>Review</h3>
                         </div>
-                        <div class="col-lg-4 col-sm-12 text-center">
+                        <div class="col-lg-2 col-sm-12 text-center">
                             <button type="button" class="btn btn-sm btn-primary" onclick="addCard('review-task-holder')"><i class="fa-solid fa-plus"></i></button>
                         </div>
                     </div>
 
+                    <div id="review-task-holder" class="card-body">
+                        
+                    </div>
                 </div>
 
                 <!-- Done Container -->
-                <div id="done-task-holder" class="col border border-danger rounded-top mx-2 pb-2">
-                    
-                    <div class="row align-items-center py-2">
-                        <div class="col-lg-8 col-sm-12">
-                            <h2 style="text-align: center;">Done</h2>
+                <div class="card col mx-2">
+                    <div class="card-header row align-items-center">
+                        <div class="col-lg-10 col-sm-12 text-lg-start text-sm-center">
+                            <h3>Done</h3>
                         </div>
-                        <div class="col-lg-4 col-sm-12 text-center">
+                        <div class="col-lg-2 col-sm-12 text-center">
                             <button type="button" class="btn btn-sm btn-primary" onclick="addCard('done-task-holder')"><i class="fa-solid fa-plus"></i></button>
                         </div>
                     </div>
-                    
+
+                    <div id="done-task-holder" class="card-body">
+                        
+                    </div>
                 </div>
+
+                <div id="card-modal" class="modal" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+
+                            <div class="modal-header input-group">
+                                <span class="input-group-text" id="task-title-addon">Task Name</span>
+                                <input id="task-title" type="text" class="form-control" aria-describedby="task-title-addon">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+
+                            <div class="modal-body">
+                                <h5>Description</h5>
+                                <textarea id="task-description-textarea" class="form-control" rows="8">Task information goes in here.</textarea>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                <button id="modal-save-button" type="button" class="btn btn-primary" data-bs-dismiss="modal">Save</button>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
 
