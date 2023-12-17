@@ -15,8 +15,8 @@
             <div class="row">
 
                 <!-- Backlog Container -->
-                <div class="card col mx-2">
-                    <div class="card-header row align-items-center">
+                <div class="card col border-danger-subtle mx-2">
+                    <div class="card-header row align-items-center bg-danger-subtle">
                         <div class="col-lg-10 col-sm-12 text-lg-start text-sm-center">
                             <h3>Backlog</h3>
                         </div>
@@ -48,8 +48,8 @@
                 </div>
 
                 <!-- Doing Container -->
-                <div class="card col mx-2">
-                    <div class="card-header row align-items-center">
+                <div class="card col border-warning-subtle mx-2">
+                    <div class="card-header row align-items-center bg-warning-subtle">
                         <div class="col-lg-10 col-sm-12 text-lg-start text-sm-center">
                             <h3>Doing</h3>
                         </div>
@@ -64,8 +64,8 @@
                 </div>
 
                 <!-- Review Container -->
-                <div class="card col mx-2">
-                    <div class="card-header row align-items-center">
+                <div class="card col border-success-subtle mx-2">
+                    <div class="card-header row align-items-center bg-success-subtle">
                         <div class="col-lg-10 col-sm-12 text-lg-start text-sm-center">
                             <h3>Review</h3>
                         </div>
@@ -80,8 +80,8 @@
                 </div>
 
                 <!-- Done Container -->
-                <div class="card col mx-2">
-                    <div class="card-header row align-items-center">
+                <div class="card col border-primary-subtle mx-2">
+                    <div class="card-header row align-items-center bg-primary-subtle">
                         <div class="col-lg-10 col-sm-12 text-lg-start text-sm-center">
                             <h3>Done</h3>
                         </div>
@@ -95,13 +95,13 @@
                     </div>
                 </div>
 
-                <div id="card-modal" class="modal" tabindex="-1">
+                <div id="card-modal" class="modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
                     <div class="modal-dialog">
                         <div class="modal-content">
 
                             <div class="modal-header input-group">
                                 <span class="input-group-text" id="task-title-addon">Task Name</span>
-                                <input id="task-title" type="text" class="form-control" aria-describedby="task-title-addon">
+                                <input id="task-title" type="text" class="form-control me-2" aria-describedby="task-title-addon">
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
 
@@ -114,7 +114,7 @@
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                                 <button id="modal-save-button" type="button" class="btn btn-primary" data-bs-dismiss="modal">Save</button>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
