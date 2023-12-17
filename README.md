@@ -11,11 +11,11 @@ Link: <link>https://alecfaye.github.io/K-Ban/</link>
 <br/>
 :heavy_check_mark: - Moving Kanban Card
 <br/>
-:pencil2: - General Kanban Card Layout (Design & Implementation)
+:heavy_check_mark: - General Kanban Card Layout (Design & Implementation)
+<br/>
+:heavy_check_mark: - Dynamically Edit Kanban Card
 <br/>
 :construction: - Placing Kanban Card
-<br/>
-:construction: - Dynamically Edit Kanban Card
 <br/>
 
 ### Legend

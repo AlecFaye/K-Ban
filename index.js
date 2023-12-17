@@ -24,7 +24,7 @@ class Card
 
 function addCard(columnId)
 {
-    const newCard = new Card(cardIdCounter, "Task Title", "Some quick example text to build on the card title and make up the bulk of the card's content.");
+    const newCard = new Card(cardIdCounter, "Default Task Title", "Some quick example text to build on the card title and make up the bulk of the card's content.");
     cards.push(newCard);
 
     let cardDiv = document.createElement("div");
@@ -86,11 +86,12 @@ function addCard(columnId)
     rightButton.type = "button";
     editButton.type = "button";
 
-    titleP.innerHTML = "Task Title";
+    titleP.innerHTML = newCard.title;
     
     cardDiv.id = cardIdCounter;
     leftButton.id = cardIdCounter * 10 + 1;
     rightButton.id = cardIdCounter * 10 + 2;
+    titleP.id = cardIdCounter * 10 + 3;
 
     let kanbanColumnIndex = getKanbanColumnIndexByStringId(columnId)
 
@@ -102,6 +103,11 @@ function addCard(columnId)
     rightButton.onclick = function()
     {
         moveCardRight(cardDiv.id.toString(), leftButton.id.toString(), rightButton.id.toString(), kanbanColumnIndex);
+    }
+
+    editButton.onclick = function()
+    {
+        editCard(cardDiv.id);
     }
 
     cardIdCounter++;
@@ -133,10 +139,44 @@ function moveCardRight(cardDivId, leftButtonId, rightButtonId, kanbanColumnIndex
     updateCardButtons(cardDivId, leftButtonId, rightButtonId, newIndex);
 }
 
+function editCard(cardDivId)
+{
+    let cardModal = new bootstrap.Modal("#card-modal");
+    let cardModalTitle = document.getElementById("task-title");
+    let cardModalTextArea = document.getElementById("task-description-textarea");
+    let cardSaveButton = document.getElementById("modal-save-button");
+    let card = cards[cardDivId - 1];
+
+    cardModalTitle.value = card.title;
+    cardModalTextArea.value = card.text;
+
+    cardSaveButton.onclick = function()
+    {
+        saveCard(cardDivId);
+    }
+
+    cardModal.show();
+}
+
+function saveCard(cardDivId)
+{
+    let cardDivTitle = document.getElementById(cardDivId * 10 + 3);
+    let cardModalTitle = document.getElementById("task-title");
+    let cardModalTextArea = document.getElementById("task-description-textarea");
+    let card = cards[cardDivId - 1];
+
+    card.title = cardModalTitle.value;
+    card.text = cardModalTextArea.value;
+    cardDivTitle.innerHTML = card.title;
+}
+
 function removeCard(cardDivId)
 {
     const cardToRemove = document.getElementById(cardDivId);
     cardToRemove.remove();
+
+    // Ever-expanding array with null elements in between
+    cards[cardDivId] = null;
 }
 
 function updateCardButtons(cardDivId, leftButtonId, rightButtonId, kanbanColumnIndex)
